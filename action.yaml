@@ -1,0 +1,76 @@
+name: 'Freeze first code blocks'
+description: 'GitHub Action to parse and convert first found code block in files to image via Freeze'
+author: 'S0AndS0'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: image
+  color: black
+
+##
+#
+inputs:
+  source_directory:
+    required: true
+    description: |
+      Directory passed to `find` for finding files
+      Example: "./collections"
+
+  find_regex:
+    required: true
+    description: |
+      Regular Expression passed to `find` to limit found files
+      Example: ".*.md"
+
+  find_regextype:
+    required: true
+    default: 'emacs'
+    description: |
+      Regular Expression type passed to `find`
+      Available values are: "emacs", "posix-awk", "posix-basic", "posix-egrep", or "posix-extended"
+
+  sed_args:
+    required: false
+    description: |
+      Extra flags or arguments to send to `sed`, only used when `sed_expression` input is also defined
+      Example: "-E"
+
+  sed_expression:
+    required: false
+    description: |
+      Search/Replace expression to send to `sed` for mutating Input/Output path
+      Example: "s@collections/_@assets/images/@"
+
+  freeze_config:
+    required: false
+    description: |
+      File path to freeze configuration
+      Example: "./ci-cd/.config/freeze/user.json"
+
+  clobber:
+    default: 0
+    required: false
+    description: |
+      Enable clobbering preexisting files by setting to `1`
+
+  verbose:
+    default: 0
+    required: false
+    description: |
+      Enable `printf` logging by setting non-zero integer value
+
+##
+#
+outputs:
+  found:
+    description: 'New-line separated list of file paths found with `find` and provided inputs'
+
+  wrote:
+    description: 'New-line separated list of file paths written by `freeze` with provided inputs'
+
+  failed:
+    description: 'New-line separated list of file paths `freeze` failed to write'
+
