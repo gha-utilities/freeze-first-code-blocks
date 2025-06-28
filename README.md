@@ -85,7 +85,7 @@ Reference the code of this repository within your own `workflow` file under
 
 ```yaml
       - name: Find and freeze first code blocks in posts
-        uses: gha-utilities/freeze-first-code-blocks@v0.0.2
+        uses: gha-utilities/freeze-first-code-blocks@v0.0.3
         with:
           source_directory: _posts
           find_regex: '.*.md'
@@ -126,7 +126,7 @@ jobs:
           submodules: 'recursive'
 
       - name: Find and freeze first code blocks in all collections
-        uses: gha-utilities/freeze-first-code-blocks@v0.0.2
+        uses: gha-utilities/freeze-first-code-blocks@v0.0.3
         with:
           source_directory: './collections'
           find_regex: '.*.md'
