@@ -228,16 +228,20 @@ fi
 
 if (( _verbose )) || (( _dry_run )); then
 	cat >&2 <<EOL
-freeze ${_freeze_args[@]} <<EOF
-${_code_content}
-EOF
+freeze "${_freeze_args[@]}" <<<"${_code_content}"
 EOL
 fi
 
 if ! (( _dry_run )); then
-	freeze "${_freeze_args[@]}" <<EOF
-${_code_content}
-EOF
+	if ! freeze "${_freeze_args[@]}" <<<"${_code_content}"; then
+		printf >&2 'Warning: retrying as MarkDown file instead'
+		if (( _verbose )); then
+			cat >&2 <<EOL
+freeze "${_freeze_args[@]}" --language markdown <<<"${_first_code_block}"
+EOL
+		fi
+		freeze "${_freeze_args[@]}" --language markdown <<<"${_first_code_block}"
+	fi
 fi
 
 # vim: noexpandtab
