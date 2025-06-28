@@ -145,7 +145,12 @@ if ! (( ${#_first_code_block} )); then
 fi
 
 if ! (( ${#_language} )); then
-	_language="$(head -n1 <<<"${_first_code_block}" | sed -E 's/^(\s*)(`)+(\w)/\3/g')"
+	_language="$(
+		sed -E '1{
+			s/^(\s*)(`)+(\w)/\3/g;
+			q;
+		}' <<<"${_first_code_block}"
+	)"
 	if (( _verbose )); then
 		printf >&2 'Parsed language from first code block -> %s\n' "${_language}"
 	fi
