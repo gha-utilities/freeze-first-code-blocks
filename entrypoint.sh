@@ -130,11 +130,8 @@ while read -rd '' _source_path; do
 	else
 		_output_directory+="${_source_dirname}"
 	fi
-	_output_directory+="/${_source_name}"
 
-	if [[ "${_source_path}" == "${_output_directory}" ]]; then
-		continue
-	elif [[ -f "${_output_directory}/first-code-block.png" ]] && ! ((_clobber)); then
+	if [[ -f "${_output_directory}/first-code-block.png" ]] && ! ((_clobber)); then
 		continue
 	fi
 
