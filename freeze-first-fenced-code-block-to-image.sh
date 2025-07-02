@@ -234,7 +234,7 @@ fi
 
 if ! (( _dry_run )); then
 	if ! freeze "${_freeze_args[@]}" <<<"${_code_content}"; then
-		printf >&2 'Warning: retrying as MarkDown file instead'
+		printf >&2 'Warning: retrying as MarkDown file instead\n'
 		if (( _verbose )); then
 			cat >&2 <<EOL
 freeze "${_freeze_args[@]}" --language markdown <<<"${_first_code_block}"
