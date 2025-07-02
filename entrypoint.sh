@@ -131,9 +131,10 @@ while read -rd '' _source_path; do
 		_output_directory+="${_source_dirname}"
 	fi
 
-	if [[ -f "${_output_directory}/${_source_name}/first-code-block.png" ]] && ! ((_clobber)); then
+	_output_path="${_output_directory}/${_source_name}/first-code-block.png"
+	if [[ -f "${_output_path}" ]] && ! ((_clobber)); then
 		if (( VERBOSE )); then
-			printf >&2 'Skipped preexisting -> %s\n' "${_output_directory}/${_source_name}/first-code-block.png"
+			printf >&2 'Skipped preexisting -> %s\n' "${_output_path}"
 		fi
 		continue
 	fi
