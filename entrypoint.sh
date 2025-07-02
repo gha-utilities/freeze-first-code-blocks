@@ -131,7 +131,7 @@ while read -rd '' _source_path; do
 		_output_directory+="${_source_dirname}"
 	fi
 
-	if [[ -f "${_output_directory}/first-code-block.png" ]] && ! ((_clobber)); then
+	if [[ -f "${_output_directory}/${_source_name}/first-code-block.png" ]] && ! ((_clobber)); then
 		continue
 	fi
 
