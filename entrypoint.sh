@@ -152,6 +152,7 @@ while read -rd '' _source_path; do
 
 	if "${_command_script[@]}"; then
 		_wrote+=("${_output_directory}")
+		chmod go+r "${_output_path}"
 	else
 		_failed+=("${_output_directory}")
 	fi
