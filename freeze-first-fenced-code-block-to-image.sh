@@ -128,7 +128,7 @@ if ! [[ -f "${_input_file}" ]]; then
 	exit 1
 fi
 
-_input_file__name="$(basename --suffix=".${_input_file##*.}" "${_input_file}")"
+_input_file__name="$(basename "${_input_file%."${_input_file##*.}"}")"
 _output_directory="${_output_directory%/}/${_input_file__name}"
 _output_file__base="${_output_directory}/first-code-block"
 
