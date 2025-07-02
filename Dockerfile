@@ -1,7 +1,7 @@
 FROM s0ands0/dockerized-charmbracelet_freeze:v0.0.12
 
 
-RUN apk add --no-cache gawk jq
+RUN apk add --no-cache column gawk jq
 
 
 COPY entrypoint.sh /
